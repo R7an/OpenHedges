@@ -1,11 +1,11 @@
 {
-  "name": "MERN-boilerplate",
+  "name": "OpenHedges.Co",
   "version": "1.0.0",
-  "description": "MERN stack project boilerplate - 2018",
+  "description": "OpenHedges Project – 2018 | Seek Inc.",
   "author": "Medicine Yeh",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/medicineyeh/MERN-boilerplate.git"
+    "url": "git+https://github.com/Swelly/OpenHedges.git"
   },
   "license": "MIT",
   "private": true,
