@@ -1,0 +1,55 @@
+.landing-page {
+	max-width: $max-width;
+	margin: auto;
+	padding: 0 $default-spacing;
+
+	.landing-inner {
+		@include flexbox();
+		@include flex-direction(row);
+
+		.hero-container {
+			flex: 1 0 70%;
+
+			.super-text-container {
+				width: 100%;
+
+				* {
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				.logo {
+					@include hexagon();
+				}
+
+				p {
+					font-family: $header-font;
+					font-size: ($default-font-size - 4px);
+					color: $secondary-black;
+					padding: 0 $default-spacing;
+					border-left: 1px solid $default-border-color;
+
+					&:first-child {
+						border-left: none;
+					}
+				}
+			}
+
+			h1 {
+				font-size: ($header-font-size * 2);
+				margin: 0 auto;
+			}
+
+			h4 {
+				font-size: $header-font-size;
+				font-weight: 100;
+				margin-top: $default-spacing;
+				color: $secondary-black;
+			}
+		}
+
+		.hero-graphic {
+			flex: 1 0 30%;
+		}
+	}
+}

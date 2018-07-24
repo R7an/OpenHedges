@@ -146,3 +146,31 @@
 		}
 	}
 }
+
+@mixin hexagon {
+	position: relative;
+	width: 18px;
+	height: 10.39px;
+	background-color: $ohedges-blue;
+	margin: 5.2px 0;
+
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		width: 0;
+		border-left: 9px solid transparent;
+		border-right: 9px solid transparent;
+	}
+
+	&:before {
+		bottom: 100%;
+		border-bottom: 5.2px solid $ohedges-blue;
+	}
+
+	&:after {
+		top: 100%;
+		width: 0;
+		border-top: 5.2px solid $ohedges-blue;
+	}
+}
