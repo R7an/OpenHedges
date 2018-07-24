@@ -4,6 +4,7 @@
 @import "_mixins.scss";
 @import "_elements.scss";
 
-// @import "_global.scss";
-@import "landing.scss";
+@import "global.scss";
+@import "_landing.scss";
 @import "_header.scss";
+@import "_footer.scss";
