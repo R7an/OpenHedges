@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
 		resolve: {
 			extensions: [".js", ".jsx", ".json", ".css", ".scss", "sass"],
 			alias: {
-				stylesheet: path.resolve(__dirname, "client/stylesheet"),
+				stylesheet: path.resolve(__dirname, "client/styles"),
 				src: path.resolve(__dirname, "client/js")
 			}
 		},

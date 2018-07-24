@@ -9,10 +9,10 @@ const Header = () => (
 		</Link>
 
 		<div className="header-links">
-			<Link to="/concept" classname="nav-item">Concept</Link>
-			<Link to="/rules" classname="nav-item">Rules</Link>
-			<Link to="/blog" classname="nav-item">Blog</Link>
-			<button classname="nav-item btn btn-sign-up">Sign Up</button>
+			<Link to="/concept" className="nav-item">Concept</Link>
+			<Link to="/rules" className="nav-item">Rules</Link>
+			<Link to="/blog" className="nav-item">Blog</Link>
+			<button className="nav-item btn btn-sign-up">Sign Up</button>
 		</div>
 	</header>
 );

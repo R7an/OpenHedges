@@ -1,7 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 
-import 'stylesheet/vendor/loading.css';
+// import '../styles/loading.css';
 
 const Loading = (props) => {
     const size = (props.size) ? props.size : 10;

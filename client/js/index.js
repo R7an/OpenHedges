@@ -9,6 +9,6 @@ const App = Loadable({
 });
 
 // Reset all CSS settings in browsers
-import 'stylesheet/normalize.css';
+import "../styles/importer.scss";
 
 ReactDOM.render(<App />, document.getElementById('app'));
