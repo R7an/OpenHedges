@@ -1,9 +1,39 @@
 header {
+	@include flexbox();
+	@include align-items(center);
+	height: 75px;
+	box-shadow: $default-shadow;
 
-	.logo-link {}
-	.nav-item {}
-	
-	.header-links {
-		a {}
+	.header-inner {
+		@include flexbox();
+		width: 100%;
+		max-width: $max-width;
+		padding: 5px $default-spacing;
+
+		.nav-item {
+			margin-left: auto;
+		}
+
+		.logo-link {
+			font-size: 34px;
+			color: $default-black;
+			margin-right: auto;
+		}
+		
+		.header-links {
+			a {
+				font-size: ($default-font-size + 2px);
+				font-weight: $header-font-weight;
+				color: $default-black;
+				margin: 0 $default-spacing;
+
+				&:hover { color: darken($default-black, 20%); }
+			}
+
+			.btn-sign-up {
+				padding: 10px 33px;
+				margin-left: $default-spacing;
+			}
+		}
 	}
 }
