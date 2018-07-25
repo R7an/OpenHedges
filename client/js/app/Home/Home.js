@@ -28,8 +28,8 @@ class Home extends React.Component {
 						</h4>
 						<button className="btn cta-button">Request Alpha Access</button>
 					</div>
-					<div className="hero-graphic">
-						<img src="../../public/assets/img/graphic-sort.png" alt="No library or expected volume of trades" />
+					<div className="graphic-container">
+						<div className="hero-graphic" title="No library or expected volume of trades"></div>
 					</div>
 				</div>
 			</div>
