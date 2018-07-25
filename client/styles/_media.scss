@@ -1,0 +1,14 @@
+@media (max-width: 680px) {
+
+	header > .header-inner >
+	.header-links > .btn-sign-up {
+	    padding: 10px 20px;
+	}
+
+	.landing-page > .landing-inner {
+		@include flex-direction(column);
+	}
+
+	footer > .footer-inner > 
+	.footer-item > .avatar { display: none; }
+}

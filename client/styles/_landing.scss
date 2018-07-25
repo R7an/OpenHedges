@@ -8,7 +8,7 @@
 		@include flex-direction(row);
 
 		.hero-container {
-			flex: 1 0 70%;
+			flex: 1 0 45%;
 
 			.super-text-container {
 				width: 100%;
@@ -49,7 +49,11 @@
 		}
 
 		.hero-graphic {
-			flex: 1 0 30%;
+			flex: 1 0 50%;
+			
+			img {
+				background-image: url("../public/assets/img/graphic-sort.png");
+			}
 		}
 	}
 }

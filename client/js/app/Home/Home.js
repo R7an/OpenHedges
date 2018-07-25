@@ -19,9 +19,9 @@ class Home extends React.Component {
 							<div className="logo"></div>
 							<p>Futures</p>
 							<p>Stock</p>
-							<p>Digital</p>
+							<p>Digital Assets</p>
 						</div>
-						<h1>Best Ideas Investment Platform</h1>
+						<h1>A marketplace for clever trading ideas</h1>
 						<h4>
 							Asset class agnostic – lorem ipsum dolor sit amet,
 							consectetur adipisicing elit.
@@ -29,7 +29,7 @@ class Home extends React.Component {
 						<button className="btn cta-button">Request Alpha Access</button>
 					</div>
 					<div className="hero-graphic">
-						<div>test</div>
+						<img src="../../public/assets/img/graphic-sort.png" alt="No library or expected volume of trades" />
 					</div>
 				</div>
 			</div>

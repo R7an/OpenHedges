@@ -10,20 +10,24 @@ header {
 		max-width: $max-width;
 		padding: 5px $default-spacing;
 
-		.nav-item {
-			margin-left: auto;
-		}
+		.nav-item { margin-left: auto; }
 
 		.logo-link {
+			font-family: $title-font;
 			font-size: 34px;
+			font-weight: 800;
+			line-height: 48px;
 			color: $default-black;
 			margin-right: auto;
 			margin-left: 0;
 		}
 		
 		.header-links {
+			@include flexbox();
+			@include align-items(center);
+
 			a {
-				font-size: ($default-font-size + 2px);
+				font-size: $default-font-size;
 				font-weight: $header-font-weight;
 				color: $default-black;
 				margin: 0 $default-spacing;

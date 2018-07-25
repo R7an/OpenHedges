@@ -6,12 +6,13 @@ const Header = () => (
 	<header>
 		<div className="header-inner">
 			<Link to="/" className="nav-item logo-link">
-				OpenHedges
+				Open Hedge
 			</Link>
 
 			<div className="header-links">
 				<Link to="/concept" className="nav-item">Concept</Link>
-				<Link to="/rules" className="nav-item">Rules</Link>
+				<Link to="/rules" className="nav-item">Investors</Link>
+				<Link to="/analysts-traders" className="nav-item">Analysts/Traders</Link>
 				<Link to="/blog" className="nav-item">Blog</Link>
 				<button className="nav-item btn btn-sign-up">Sign Up</button>
 			</div>

@@ -9,13 +9,9 @@ body {
 	min-height: 100vh;
 }
 
-h1, h2 {
-	font-family: $title-font;
-}
+h1, h2 { font-family: $title-font; }
 
-h3, h4 {
-	font-family: $header-font;
-}
+h3, h4 { font-family: $header-font; }
 
 a {
 	@include default-link();
@@ -25,6 +21,4 @@ a {
 	&:hover { color: $ohedges-blue-active; }
 }
 
-button {
-	@include default-button();
-}
+button { @include default-button(); }
