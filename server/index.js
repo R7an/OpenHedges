@@ -15,7 +15,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const host = process.env.HOST || '172.26.7.158';
+const host = process.env.HOST || '52.35.136.199';
 const port = process.env.PORT || 80;
 const config = require('./config');
 const WebpackConfigure = require('../webpack.config');
