@@ -1,0 +1,24 @@
+body {
+	font-family: $default-font;
+	background: $default-white;
+}
+
+.app-container {
+	@include flexbox();
+	@include flex-direction(column);
+	min-height: 100vh;
+}
+
+h1, h2 { font-family: $title-font; }
+
+h3, h4 { font-family: $header-font; }
+
+a {
+	@include default-link();
+	font-size: $default-font-size;
+	color: $ohedges-blue;
+
+	&:hover { color: $ohedges-blue-active; }
+}
+
+button { @include default-button(); }

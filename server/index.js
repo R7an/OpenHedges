@@ -100,7 +100,7 @@ if (devMode) {
 app.listen(port, host, (err) => {
     if (err) winston.log('error', err);
 
-    winston.log('info', '>>> 🌎 Open http://%s:%s/ in your browser.', host, port);
+    winston.log('info', '>>> 🌎 Open http://%s:%s in your browser.', host, port);
 });
 
 module.exports = app;

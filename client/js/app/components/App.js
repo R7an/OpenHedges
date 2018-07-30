@@ -11,7 +11,7 @@ const defaultProps = {};
 
 const App = ({children}) => {
     return (
-        <div>
+        <div className="app-container">
             <Header />
             {children}
             <Footer />

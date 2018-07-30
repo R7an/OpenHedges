@@ -10,7 +10,7 @@ mongoose.promise = Promise;
 const schema = new Schema({
     email: {type: String, unique: true, required: true},
     password: {type: String, required: true},
-    name: {type: String, default: '使用者'},
+    name: {type: String, default: 'user'},
     photo: {type: String, default: ''},
     permissions: {type: Array, default: ['basic']},
 }, {
