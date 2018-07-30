@@ -15,8 +15,8 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const devMode = process.env.NODE_ENV !== 'production';
-const host = process.env.HOST || '52.35.136.199';
-const port = process.env.PORT || 80;
+const host = process.env.HOST || '0.0.0.0';
+const port = process.env.PORT || 8080;
 const config = require('./config');
 const WebpackConfigure = require('../webpack.config');
 
@@ -100,7 +100,7 @@ if (devMode) {
 app.listen(port, host, (err) => {
     if (err) winston.log('error', err);
 
-    winston.log('info', '>>> 🌎 Open http://%s:%s/ in your browser.', host, port);
+    winston.log('info', '>>> 🌎 Open http://%s:%s in your browser.', host, port);
 });
 
 module.exports = app;
