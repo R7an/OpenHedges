@@ -11,7 +11,7 @@ import SignupForm from '../forms/SignupForm';
 const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen }) => (
     <Dialog
         autoFocus={true}
-        title={'hello govna'}
+        title={'Sign-Up'}
         canEscapeKeyClose={true}
         canOutsideClickClose={true}
         enforceFocus={true}
@@ -27,13 +27,6 @@ const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen }) => (
                 <Tooltip content="This button is hooked up to close the dialog.">
                     <Button onClick={() => closeSignupModal(false)}>Close</Button>
                 </Tooltip>
-                <AnchorButton
-                    intent={Intent.PRIMARY}
-                    href="/"
-                    target="_blank"
-                >
-                    Visit the Foundry website
-                            </AnchorButton>
             </div>
         </div>
     </Dialog>

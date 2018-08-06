@@ -63,8 +63,6 @@ let SignUpForm = ({ handleSubmit, submitting  }) =>
             <Field name="confirmPassword" type="password" label="Confirm Password" component={RenderInput} />
             <button type="submit" disabled={submitting} className="button button-primary">Submit</button>
         </div>
-       
-        <Link to="/" className="pt-button button button-secondary login-cancel">Cancel</Link>
     </form>
 
 SignUpForm = reduxForm({
