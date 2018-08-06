@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import SignupModal from './containers/SignupModal';
+
 class Home extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -12,6 +14,7 @@ class Home extends PureComponent {
 	render() {
 		return (
 			<div className="landing-page">
+			<SignupModal />
 				<div className="landing-inner">
 					<div className="hero-container">
 						<div className="super-text-container">
