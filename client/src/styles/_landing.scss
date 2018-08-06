@@ -1,0 +1,63 @@
+.landing-page {
+	max-width: $max-width;
+	margin: auto;
+	padding: 0 $default-spacing;
+
+	.landing-inner {
+		@include flexbox();
+		@include flex-direction(row);
+
+		.hero-container {
+			flex: 0 1 55%;
+
+			.super-text-container {
+				width: 100%;
+
+				* {
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				.logo {
+					@include hexagon();
+				}
+
+				p {
+					font-family: $header-font;
+					font-size: ($default-font-size - 4px);
+					color: $secondary-black;
+					padding: 0 $default-spacing;
+					border-left: 1px solid $default-border-color;
+
+					&:first-child {
+						border-left: none;
+					}
+				}
+			}
+
+			h1 {
+				font-size: ($header-font-size * 2);
+				margin: 0 auto;
+			}
+
+			h4 {
+				font-size: $header-font-size;
+				font-weight: 100;
+				margin-top: $default-spacing;
+				color: $secondary-black;
+			}
+		}
+
+		.graphic-container {
+			flex: 0 1 50%;
+
+			.hero-graphic {
+				height: 100%;
+				background-image: url("../assets/img/hero-graphic.png");
+				background-size: 300px;
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}

@@ -1,0 +1,32 @@
+@mixin default-link {
+	font-family: $default-font;
+	color: $default-black;
+	text-decoration: none;
+	text-transform: none;
+
+	@include transition(all 0.25s linear);
+}
+
+@mixin default-button {
+	font-weight: 500;
+	color: $default-white;
+	background: $ohedges-blue;
+	padding: $default-spacing ($default-spacing + 10px);
+	vertical-align: middle;
+	border: none;
+	border-radius: $default-border-radius;
+	box-shadow: $default-button-shadow;
+
+	@include transition(all 0.25s ease-in-out);
+
+	&:hover {
+		cursor: pointer;
+		background: $ohedges-blue-active;
+		box-shadow: 0;
+	}
+}
+
+.cta-button {
+    font-size: ($header-font-size - 2px);
+    font-weight: $header-font-weight;
+}
