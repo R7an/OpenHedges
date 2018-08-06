@@ -13,9 +13,11 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd ../client && npm start",
+    "client-dev": "cd ../client && npm start",
+    "client-prod": "cd ../client && npm run build",
     "server": "nodemon index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client-dev\"",
+    "prod": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client-prod\""
   },
   "repository": {
     "type": "git",
