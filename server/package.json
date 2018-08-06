@@ -1,0 +1,30 @@
+{
+  "name": "openhedges.co",
+  "version": "1.0.0",
+  "description": "OpenHedges Project - 2018 | Seek Inc.",
+  "main": "index.js",
+  "dependencies": {
+    "create-react-app": "^1.5.2",
+    "express.js": "^1.0.0",
+    "mongoose": "^5.2.6",
+    "morgan": "^1.9.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd ../client && npm start",
+    "server": "nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swelly/OpenHedges.git"
+  },
+  "author": "Seek Inc.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Swelly/OpenHedges/issues"
+  },
+  "homepage": "https://github.com/Swelly/OpenHedges#readme"
+}
