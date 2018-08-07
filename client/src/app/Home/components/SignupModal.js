@@ -2,13 +2,15 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
-import { Dialog, Classes, Tooltip, AnchorButton, Button, Intent  } from "@blueprintjs/core";
+import { Dialog, Classes, Tooltip, Button } from "@blueprintjs/core";
 
 import { closeSignupModal } from '../../../redux/actions/UiActions';
 
 import SignupForm from '../forms/SignupForm';
+import UserOperations from '../../../redux/operations/UserOperations';
 
-const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen }) => (
+const {signupUser} = UserOperations;
+const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen, signupUser }) => (
     <Dialog
         autoFocus={true}
         title={'Sign-Up'}
@@ -20,7 +22,7 @@ const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen }) => (
         onClose={() => closeSignupModal(false)}
         isOpen={isSignupModalOpen}>
         <div className={Classes.DIALOG_BODY}>
-            <SignupForm />
+            <SignupForm signupUser = {signupUser} />
         </div>
         <div className={Classes.DIALOG_FOOTER}>
             <div className={Classes.DIALOG_FOOTER_ACTIONS}>
@@ -40,6 +42,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
     {
         closeSignupModal: (bool) => dispatch(closeSignupModal(bool)),
+        signupUser: (user) => dispatch(signupUser(user)),
     }
 )
 

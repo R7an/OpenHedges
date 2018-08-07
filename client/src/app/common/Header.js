@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
-import { openSignupModal } from "../../redux/actions/UiActions";
+import { Link } from 'react-router-dom';
+import { openSignupModal } from '../../redux/actions/UiActions';
 
 const ConnectedHeader = ({openSignupModal}) => (
 	<header>
@@ -21,16 +21,11 @@ const ConnectedHeader = ({openSignupModal}) => (
 	</header>
 );
 
-const mapStateToProps = state => (
-	{
-		isSignupModalOpen: state.isSignupModalOpen,
-	}
-);
 const mapDispatchToProps = dispatch => (
 	{
 		openSignupModal: bool => dispatch(openSignupModal(bool)),
 	}
 );
 
-const Header = connect(mapStateToProps, mapDispatchToProps)(ConnectedHeader);
+const Header = connect(null, mapDispatchToProps)(ConnectedHeader);
 export default Header;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form'
 import PasswordValidator from 'password-validator';
 import emailValidator from 'email-validator';
@@ -53,8 +52,8 @@ const RenderInput = createRenderer((input, label, type) =>
     <input {...input} placeholder={label} type={type} className="pt-input" />
 )
 
-let SignUpForm = ({ handleSubmit, submitting  }) =>
-    <form style={{ textAlign: "center" }} onSubmit={handleSubmit(() =>console.log('dsdsdsd'))}>
+let SignUpForm = ({handleSubmit, submitting, signupUser  }) =>
+    <form style={{ textAlign: "center" }} onSubmit={handleSubmit(signupUser)}>
         <div className="pt-label-container">
             <Field name="email" label="Email" component={RenderInput} />
             <Field name="fullName" label="Full Name" component={RenderInput} />
