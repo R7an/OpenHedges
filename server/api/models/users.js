@@ -17,6 +17,9 @@ const usersSchema = new Schema({
     country:{
         type: String,
     },
+    phoneNumber:{
+        type: String,
+    },
     local: {
         email: {
             type: String,
