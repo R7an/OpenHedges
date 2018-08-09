@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import {
     isSignupModalOpen,
+    isSignupModal2Open,
 } from './UiReducers';
 
 import {
@@ -16,5 +17,6 @@ export default combineReducers({
     signupUserSuccess,
     signupUserFailure,
     isSignupModalOpen,
+    isSignupModal2Open,
     form: formReducer,
 });

@@ -11,6 +11,12 @@ const usersSchema = new Schema({
         type: String,
         // required: true
     },
+    stateOfResidence: {
+        type: String,
+    },
+    country:{
+        type: String,
+    },
     local: {
         email: {
             type: String,

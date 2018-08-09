@@ -1,39 +1,67 @@
-import React from 'react';
-
+import React, {PureComponent} from 'react';
 import { connect } from 'react-redux';
 
-import { Dialog, Classes, Tooltip, Button } from "@blueprintjs/core";
-
-import { closeSignupModal } from '../../../redux/actions/UiActions';
+import { Dialog, Classes, Tab, Tabs } from "@blueprintjs/core";
 
 import SignupForm from '../forms/SignupForm';
+
+import { closeSignupModal, openSignupModal2 } from '../../../redux/actions/UiActions';
 import UserOperations from '../../../redux/operations/UserOperations';
+const { signupUser } = UserOperations;
 
-const {signupUser} = UserOperations;
-const ConnectedSignupModal = ({ closeSignupModal, isSignupModalOpen, signupUser }) => (
-    <Dialog
-        autoFocus={true}
-        title={'Sign-Up'}
-        canEscapeKeyClose={true}
-        canOutsideClickClose={true}
-        enforceFocus={true}
-        usePortal={false}
-        lazy={true}
-        onClose={() => closeSignupModal(false)}
-        isOpen={isSignupModalOpen}>
-        <div className={Classes.DIALOG_BODY}>
-            <SignupForm signupUser = {signupUser} />
-        </div>
-        <div className={Classes.DIALOG_FOOTER}>
-            <div className={Classes.DIALOG_FOOTER_ACTIONS}>
-                <Tooltip content="This button is hooked up to close the dialog.">
-                    <Button onClick={() => closeSignupModal(false)}>Close</Button>
-                </Tooltip>
+class ConnectedSignupModal extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            activeTab: "investors",
+        }
+        this._handleTabChange = this._handleTabChange.bind(this);
+
+    }
+
+    _handleTabChange(tabId) {
+        this.setState({ activeTab: tabId });
+    }
+
+    render() {
+        const { closeSignupModal, isSignupModalOpen, signupUser, openSignupModal2 } = this.props;
+        return (
+            <Dialog
+            autoFocus={true}
+            title={'OpenHedges Alpha Application'}
+            canEscapeKeyClose={true}
+            canOutsideClickClose={true}
+            isCloseButtonShown={false}
+            enforceFocus={true}
+            usePortal={false}
+            lazy={true}
+            onClose={() => closeSignupModal(false)}
+            isOpen={isSignupModalOpen}>
+            <div className={Classes.DIALOG_BODY}>
+    
+                <Tabs
+                    id="TabsExample"
+                    onChange={tabId => this._handleTabChange(tabId)}
+                    selectedTabId={this.state.activeTab}
+                >
+                    <Tab id="investors" title="Investors" panel={
+                        <SignupForm
+                            onSubmit={(values) => {
+                                signupUser(values); closeSignupModal(false); openSignupModal2(true);
+                            }}
+                        />
+    
+                    } />
+                    <Tab id="analysts" title="Analysts" panel={
+                        <div>'Analysts form'</div>
+                    } />
+                </Tabs>
             </div>
-        </div>
-    </Dialog>
-);
-
+        </Dialog>
+        )
+    }
+} 
+   
 const mapStateToProps = state => (
     {
         isSignupModalOpen: state.isSignupModalOpen,
@@ -42,6 +70,7 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => (
     {
         closeSignupModal: (bool) => dispatch(closeSignupModal(bool)),
+        openSignupModal2: (bool) => dispatch(openSignupModal2(bool)),
         signupUser: (user) => dispatch(signupUser(user)),
     }
 )

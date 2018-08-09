@@ -10,25 +10,26 @@ module.exports = usersController;
 function usersController(){
     return {
         register: register,
+        //login: login,
         getAll: getAll,
        // update: update,
         remove: remove
     }
 
+    // function login (req, res, next){
+    //    
+    // }
+
     function register(req, res, next) {
-        debugger
         passport.authenticate('local-signup', registerDone)(req, res, next)
         function registerDone(err, user, info) {
-            debugger
             if (err) return next(err)
 
             // Generate a JSON response reflecting authentication status
-            if (user===null) {
-                console.log('ddsds')
+            if (!user) {
                 const errorResponseModel = new responses.ErrorResponse(`registration failed: ${info.reason}`)
                 errorResponseModel.alert.message = `registration failed: ${info.reason}`
-
-                return res.json(errorResponseModel)
+                return res.status(409).json(errorResponseModel)
             }
 
             // ***********************************************************************
@@ -39,10 +40,9 @@ function usersController(){
             // ***********************************************************************
             req.login(user, loginErr => {
                 if (loginErr) return next(loginErr)
-                console.log('ddsds')
-                // const responseModel = new responses.SuccessResponse()
-                // responseModel.alert.message = 'Registration succeeded'
-                // return res.json(responseModel)
+                const responseModel = new responses.SuccessResponse()
+                responseModel.alert.message = 'Registration succeeded'
+                return res.json(responseModel)
             })
         }
     }

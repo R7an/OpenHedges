@@ -10,20 +10,13 @@ function passportConfig(passport) {
     // =========================================================================
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
-    debugger
     passport.serializeUser(function (user, done) {
-        debugger
-        done(null, user.id)
+        return done(null, user.id);
     })
     
     passport.deserializeUser(function (id, done) {
-        debugger
         Users.findById(id).lean().exec(function (err, user) {
-            if (user) {
-                user.agency = user.agency.toString();
-            }
-
-           done(err, user)
+          return  done(err, user);
         })
     })
 
@@ -45,7 +38,6 @@ function passportConfig(passport) {
     }, localLogin))
 
     function localSignup(req, email, password, done) {
-        debugger
         // asynchronous
         // Users.findOne wont fire unless data is sent back
         process.nextTick(() => {
@@ -63,20 +55,17 @@ function passportConfig(passport) {
 
                 // check to see if theres already a user with that email
                 if (user) {
-                    const errorsFound = null
-                    const userCreated = false
-                    return done(errorsFound, userCreated, {
-                        reason: 'User already exists with that email.'
-                    })
+                    return done(null, false, {reason:'A user with this email already exists.'})
                 } else {
                     // if there is no user with that email, create the user
-                    var newUser = new Users()
+                    let newUser = new Users()
 
                     // set the user's local credentials
+                    newUser.firstName = req.body.firstName;
+                    newUser.lastName = req.body.lastName;
+                    newUser.username= req.body.username;
                     newUser.local.email = email
                     newUser.local.password = newUser.generateHash(password)
-
-                    console.log(newUser);
 
                     // save the user
                     newUser.save(function (err) {

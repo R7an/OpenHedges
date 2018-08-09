@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import SignupModal from './components/SignupModal';
+import SignupModal2 from './components/SignupModal2';
 
 class Home extends PureComponent {
 	constructor(props) {
@@ -15,6 +16,7 @@ class Home extends PureComponent {
 		return (
 			<div className="landing-page">
 				<SignupModal />
+				<SignupModal2 />
 				<div className="landing-inner">
 					<div className="hero-container">
 						<div className="super-text-container">

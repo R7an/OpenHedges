@@ -11,14 +11,6 @@ const UserOperations = (() => {
         signupUser: signupUser,
     }
     function signupUser(userInfo) {
-        userInfo = Object.assign({
-            firstName:userInfo.firstName,
-            lastName: userInfo.lastName,
-            local: {
-                email: userInfo.email,
-                password: userInfo.password,
-            },
-        })
         return (dispatch) => {
             dispatch(signupUserRequest(true));
             const signupUrl = new URL(`${url}/api/users/`);
@@ -27,17 +19,18 @@ const UserOperations = (() => {
                     method: 'POST',
                     body: JSON.stringify(userInfo),
                     credentials: 'include',
+                    headers:{
+                        'Content-Type': 'application/json'
+                      }
                 }).then((response) => {
                     if (!response.ok) {
                         throw Error(response.statusText);
                     }
                     dispatch(signupUserRequest(false));
-                    debugger
                     return response;
                 })
                 .then(response => response.json())
                 .then((response) => {
-                    debugger
                     dispatch(signupUserSuccess(true));
                     // return dispatch(loginUserSuccess(response.user));
                     return response;
