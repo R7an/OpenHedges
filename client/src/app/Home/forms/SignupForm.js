@@ -118,13 +118,6 @@ let SignupForm = ({ handleSubmit, submitting }) => (
             <Field name="userAgreement" label="I agree to the User Agreement and Privacy Policy." component={RenderRadio} />
             <button type="submit" disabled={submitting} className="button button-primary">Continue Application</button>
         </div>
-        <button
-            type="submit"
-            disabled={submitting}
-            className="button button-primary"
-        >
-            Submit
-        </button>
     </form>
 );
 
