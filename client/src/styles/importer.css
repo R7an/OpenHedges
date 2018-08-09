@@ -6,6 +6,100 @@
   font-size: 20px;
   font-weight: 700; }
 
+.bp3-dialog {
+  text-align: center;
+  padding-bottom: 0; }
+  .bp3-dialog .bp3-dialog-header, .bp3-dialog .bp3-heading:last-child {
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
+    font-size: 22px;
+    padding: 7.5px 0;
+    margin: 0; }
+  .bp3-dialog .bp3-dialog-body {
+    margin: 0; }
+    .bp3-dialog .bp3-dialog-body form {
+      position: relative; }
+      .bp3-dialog .bp3-dialog-body form button {
+        position: relative;
+        margin-top: 15px;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        border-radius: 0 0 6px 6px; }
+      .bp3-dialog .bp3-dialog-body form .error {
+        position: relative; }
+        .bp3-dialog .bp3-dialog-body form .error .meta-error {
+          position: absolute;
+          bottom: -20px;
+          left: 0;
+          font-size: 12px;
+          color: #D5373C; }
+      .bp3-dialog .bp3-dialog-body form .pt-label-container {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        -moz-justify-content: center;
+        -ms-justify-content: center;
+        justify-content: center;
+        -ms-flex-pack: center;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        align-items: center;
+        -webkit-flex-wrap: wrap;
+        -moz-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        padding: 30px 40px 0; }
+        .bp3-dialog .bp3-dialog-body form .pt-label-container .label-row {
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex; }
+        .bp3-dialog .bp3-dialog-body form .pt-label-container .password-entry {
+          padding-top: 20px; }
+        .bp3-dialog .bp3-dialog-body form .pt-label-container label {
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          flex: 0 0 100%;
+          font-family: "Lato", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
+          font-size: 16px;
+          color: #374040;
+          margin: 0 auto 25px;
+          width: 100%; }
+          .bp3-dialog .bp3-dialog-body form .pt-label-container label:first-child, .bp3-dialog .bp3-dialog-body form .pt-label-container label:nth-child(2) {
+            width: 40%;
+            flex: 0 0 50%; }
+          .bp3-dialog .bp3-dialog-body form .pt-label-container label .popover-label {
+            width: 100%;
+            font-family: "Fira Mono", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
+            color: #778484;
+            text-align: left; }
+            .bp3-dialog .bp3-dialog-body form .pt-label-container label .popover-label:first-child {
+              margin-right: 15px; }
+            .bp3-dialog .bp3-dialog-body form .pt-label-container label .popover-label input, .bp3-dialog .bp3-dialog-body form .pt-label-container label .popover-label .pt-input {
+              width: 100%;
+              outline: none;
+              padding: 6px;
+              margin-top: 5px;
+              background: #F8FAFC;
+              border: 1px solid #EDEDEE;
+              border-radius: 4px;
+              box-shadow: 0 0 0 1px #e0e2ea; }
+          .bp3-dialog .bp3-dialog-body form .pt-label-container label textarea {
+            flex: 1 1 54%;
+            min-height: 100px; }
+
 body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
   background: #FFFFFF; }

@@ -1,19 +1,18 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form'
-import PasswordValidator from 'password-validator';
-import emailValidator from 'email-validator';
+import React from "react";
+import { reduxForm, Field } from "redux-form";
+import PasswordValidator from "password-validator";
+import emailValidator from "email-validator";
 
 const passwordSchema = new PasswordValidator();
 
-passwordSchema
-    .is().min(6);
+passwordSchema.is().min(6);
 
-const validate = (values) => {
+const validate = values => {
     const errors = {};
     if (!values.email) {
-        errors.email = 'Please enter your email.';
+        errors.email = "Please enter your email.";
     } else if (!emailValidator.validate(values.email)) {
-        errors.email = 'Please enter a correct email address.';
+        errors.email = "Please enter a correct email address.";
     }
     if (!values.firstName) {
         errors.firstName = 'Please enter your full name.';
@@ -22,26 +21,24 @@ const validate = (values) => {
         errors.lastName = 'Please enter your full name.';
     }
     if (!values.password) {
-        errors.password = 'Please enter a password.';
+        errors.password = "Please enter a password.";
     } else if (!passwordSchema.validate(values.password)) {
-        errors.password = 'Password is too short, minimum is 6 characters.';
+        errors.password = "Password is too short, minimum is 6 characters.";
     }
     return errors;
 };
 
-const createRenderer = render => ({ input, meta, label, type, ...rest }) =>
-    <label className={meta.error && meta.touched ? 'error' : ''}>
-        <div style={{ "display": "flex" }}>
-            <label style={{ "textAlign": "left" }}>{label}</label>
-            {' '}
+const createRenderer = render => ({ input, meta, label, type, ...rest }) => (
+    <label className={meta.error && meta.touched ? "error" : ""}>
+        <div className="popover-label">
+            {label}
             {render(input, label, type, rest)}
-        </div>
+        </div>{" "}
+
         {meta.error &&
-            meta.touched &&
-            <span style={{ "color": "red", "fontSize": "12px" }}>
-                {meta.error}
-            </span>}
+            meta.touched && <span className="meta-error">{meta.error}</span>}
     </label>
+);
 
 const RenderInput = createRenderer((input, label, type) =>
     <input {...input} placeholder={label} type={type} className="pt-input" />
@@ -56,7 +53,7 @@ const RenderSelect = createRenderer((input, label, type, { children }) =>
 )
 
 
-let SignupForm = ({ handleSubmit, submitting }) =>
+let SignupForm = ({ handleSubmit, submitting }) => (
     <form style={{ textAlign: "center" }} onSubmit={handleSubmit}>
         <div className="pt-label-container">
             <Field name="email" label="Email" component={RenderInput} />
@@ -121,7 +118,15 @@ let SignupForm = ({ handleSubmit, submitting }) =>
             <Field name="userAgreement" label="I agree to the User Agreement and Privacy Policy." component={RenderRadio} />
             <button type="submit" disabled={submitting} className="button button-primary">Continue Application</button>
         </div>
+        <button
+            type="submit"
+            disabled={submitting}
+            className="button button-primary"
+        >
+            Submit
+        </button>
     </form>
+);
 
 SignupForm = reduxForm({
     form: 'signupForm',
