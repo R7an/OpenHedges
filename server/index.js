@@ -21,10 +21,10 @@ const config = require('./config');
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000','http://localhost:8080'],
   credentials: true,
+  //preflightContinue:true,
 }));
-
 
 // Set up Mongoose with centralized promise
 mongoose.Promise = global.Promise;
@@ -68,7 +68,7 @@ app.use(bodyParser.json({
 app.use(bodyParser.urlencoded({ extended: true })); // Parse POST contents
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
-
+app.use(expressValidator());
 // passport and mongo-connect config
 if (sessionStore === "mongo") {
   app.use(session({

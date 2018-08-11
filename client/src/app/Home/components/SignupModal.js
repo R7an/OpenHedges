@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import { Dialog, Classes, Tab, Tabs } from "@blueprintjs/core";
@@ -27,41 +27,45 @@ class ConnectedSignupModal extends PureComponent {
         const { closeSignupModal, isSignupModalOpen, signupUser, openSignupModal2 } = this.props;
         return (
             <Dialog
-            autoFocus={true}
-            title={'OpenHedges Alpha Application'}
-            canEscapeKeyClose={true}
-            canOutsideClickClose={true}
-            isCloseButtonShown={false}
-            enforceFocus={true}
-            usePortal={false}
-            lazy={true}
-            onClose={() => closeSignupModal(false)}
-            isOpen={isSignupModalOpen}>
-            <div className={Classes.DIALOG_BODY}>
-    
-                <Tabs
-                    id="TabsExample"
-                    onChange={tabId => this._handleTabChange(tabId)}
-                    selectedTabId={this.state.activeTab}
-                >
-                    <Tab id="investors" title="Investors" panel={
-                        <SignupForm
-                            onSubmit={(values) => {
-                                signupUser(values); closeSignupModal(false); openSignupModal2(true);
-                            }}
-                        />
-    
-                    } />
-                    <Tab id="analysts" title="Analysts" panel={
-                        <div>'Analysts form'</div>
-                    } />
-                </Tabs>
-            </div>
-        </Dialog>
+                autoFocus={true}
+                title={'OpenHedges Alpha Application'}
+                canEscapeKeyClose={true}
+                canOutsideClickClose={true}
+                isCloseButtonShown={false}
+                enforceFocus={true}
+                usePortal={false}
+                lazy={true}
+                onClose={() => closeSignupModal(false)}
+                isOpen={isSignupModalOpen}>
+                <div className={Classes.DIALOG_BODY}>
+
+                    <Tabs
+                        id="TabsExample"
+                        onChange={tabId => this._handleTabChange(tabId)}
+                        selectedTabId={this.state.activeTab}
+                    >
+                        <Tab id="investors" title="Investors" panel={
+                            // <SignupForm
+                            //     onSubmit={(values) => {
+                            //         signupUser(values); closeSignupModal(false); openSignupModal2(true);
+                            //     }}
+                            // />
+                            <SignupForm
+                                closeSignupModal={closeSignupModal}
+                                signupUser={signupUser}
+                                openSignupModal2={openSignupModal2}
+                            />
+                        } />
+                        <Tab id="analysts" title="Analysts" panel={
+                            <div>'Analysts form'</div>
+                        } />
+                    </Tabs>
+                </div>
+            </Dialog>
         )
     }
-} 
-   
+}
+
 const mapStateToProps = state => (
     {
         isSignupModalOpen: state.isSignupModalOpen,

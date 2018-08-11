@@ -1,3 +1,5 @@
+import { SubmissionError } from 'redux-form';
+
 import {
     signupUserRequest,
     signupUserSuccess,
@@ -11,20 +13,21 @@ const UserOperations = (() => {
         signupUser: signupUser,
     }
     function signupUser(userInfo) {
-        return (dispatch) => {
+        return async (dispatch) => {
             dispatch(signupUserRequest(true));
             const signupUrl = new URL(`${url}/api/users/`);
-            fetch(signupUrl.href,
+            await fetch(signupUrl.href,
                 {
                     method: 'POST',
                     body: JSON.stringify(userInfo),
                     credentials: 'include',
-                    headers:{
-                        'Content-Type': 'application/json'
-                      }
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    mode: 'cors'
                 }).then((response) => {
                     if (!response.ok) {
-                        throw Error(response.statusText);
+                        throw new Error(response.statusText);
                     }
                     dispatch(signupUserRequest(false));
                     return response;
@@ -32,14 +35,19 @@ const UserOperations = (() => {
                 .then(response => response.json())
                 .then((response) => {
                     dispatch(signupUserSuccess(true));
-                    // return dispatch(loginUserSuccess(response.user));
                     return response;
                 })
                 .catch((err) => {
                     dispatch(signupUserFailure(true));
-                    //dispatch(loginUserFailure(true));
-                    throw Error(err);
-                });
+                    if (err.message === 'Conflict') {
+                        throw new SubmissionError({
+                            email: 'There is already a user registered with this email.',
+                            _error: 'Signup failed!',
+                        });
+                    }
+                    throw new Error(err);
+                }
+                );
         }
     }
 })();

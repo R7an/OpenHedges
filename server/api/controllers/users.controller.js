@@ -29,7 +29,7 @@ function usersController(){
             if (!user) {
                 const errorResponseModel = new responses.ErrorResponse(`registration failed: ${info.reason}`)
                 errorResponseModel.alert.message = `registration failed: ${info.reason}`
-                return res.status(409).json(errorResponseModel)
+                return res.status(409).json(errorResponseModel);
             }
 
             // ***********************************************************************
@@ -42,7 +42,7 @@ function usersController(){
                 if (loginErr) return next(loginErr)
                 const responseModel = new responses.SuccessResponse()
                 responseModel.alert.message = 'Registration succeeded'
-                return res.json(responseModel)
+                return res.status(200).json(responseModel)
             })
         }
     }
