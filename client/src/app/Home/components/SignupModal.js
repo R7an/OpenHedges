@@ -45,11 +45,6 @@ class ConnectedSignupModal extends PureComponent {
                         selectedTabId={this.state.activeTab}
                     >
                         <Tab id="investors" title="Investors" panel={
-                            // <SignupForm
-                            //     onSubmit={(values) => {
-                            //         signupUser(values); closeSignupModal(false); openSignupModal2(true);
-                            //     }}
-                            // />
                             <SignupForm
                                 closeSignupModal={closeSignupModal}
                                 signupUser={signupUser}

@@ -7,9 +7,9 @@ import SignupForm2 from '../forms/SignupForm2';
 
 import { closeSignupModal2 } from '../../../redux/actions/UiActions';
 import UserOperations from '../../../redux/operations/UserOperations';
-const { signupUser } = UserOperations;
+const { updateUser } = UserOperations;
 
-const ConnectedSignupModal2 = ({ closeSignupModal2, isSignupModal2Open, userFormData }) => (
+const ConnectedSignupModal2 = ({ closeSignupModal2, isSignupModal2Open, userFormData, updateUser, userId }) => (
     <Dialog
         autoFocus={true}
         title={`Almost there ${(userFormData) ? (userFormData.firstName) : 'Name'}`}
@@ -26,7 +26,7 @@ const ConnectedSignupModal2 = ({ closeSignupModal2, isSignupModal2Open, userForm
                 We need to verify both your email and phone number for access to our platform.
             </div>
             <div>
-                <SignupForm2 closeSignupModal2={closeSignupModal2} />
+                <SignupForm2 closeSignupModal2={closeSignupModal2}  updateUser = {updateUser} userId= {userId}/>
             </div>
         </div>
     </Dialog>
@@ -35,13 +35,14 @@ const ConnectedSignupModal2 = ({ closeSignupModal2, isSignupModal2Open, userForm
 const mapStateToProps = state => (
     {
         isSignupModal2Open: state.isSignupModal2Open,
-        userFormData: state.form.signupForm && state.form.signupForm.values
+        userFormData: state.form.signupForm && state.form.signupForm.values,
+        userId: state.signupUserSuccess,
     }
 )
 const mapDispatchToProps = dispatch => (
     {
         closeSignupModal2: (bool) => dispatch(closeSignupModal2(bool)),
-        signupUser: (user) => dispatch(signupUser(user)),
+        updateUser: (userInfo, userId) => dispatch(updateUser(userInfo, userId)),
     }
 )
 

@@ -4,6 +4,9 @@ import {
     signupUserRequest,
     signupUserSuccess,
     signupUserFailure,
+    updateUserRequest,
+    updateUserSuccess,
+    updateUserFailure,
 } from '../actions/UserActions';
 
 const url = 'http://localhost:8080'
@@ -11,20 +14,21 @@ const url = 'http://localhost:8080'
 const UserOperations = (() => {
     return {
         signupUser: signupUser,
+        updateUser: updateUser,
     }
     function signupUser(userInfo) {
         return async (dispatch) => {
             dispatch(signupUserRequest(true));
             const signupUrl = new URL(`${url}/api/users/`);
-            await fetch(signupUrl.href,
+            const response = await fetch(signupUrl.href,
                 {
-                    method: 'POST',
                     body: JSON.stringify(userInfo),
                     credentials: 'include',
+                    method: 'POST',
+                    mode: 'cors',
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    mode: 'cors'
                 }).then((response) => {
                     if (!response.ok) {
                         throw new Error(response.statusText);
@@ -34,7 +38,7 @@ const UserOperations = (() => {
                 })
                 .then(response => response.json())
                 .then((response) => {
-                    dispatch(signupUserSuccess(true));
+                    dispatch(signupUserSuccess(response.item));
                     return response;
                 })
                 .catch((err) => {
@@ -48,6 +52,47 @@ const UserOperations = (() => {
                     throw new Error(err);
                 }
                 );
+            return response;
+        }
+    }
+
+    function updateUser(userInfo, userId) {
+        return async (dispatch) => {
+            dispatch(updateUserRequest(true));
+            const signupUrl = new URL(`${url}/api/users/${userId}`);
+            const response = await fetch(signupUrl.href,
+                {
+                    body: JSON.stringify(userInfo),
+                    credentials: 'include',
+                    method: 'PUT',
+                    mode: 'cors',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                }).then((response) => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    dispatch(updateUserRequest(false));
+                    return response;
+                })
+                .then(response => response.json())
+                .then((response) => {
+                    dispatch(updateUserSuccess(true));
+                    return response;
+                })
+                .catch((err) => {
+                    dispatch(updateUserFailure(true));
+                    if (err.message === 'Conflict') {
+                        throw new SubmissionError({
+                            email: 'There is already a user registered with this email.',
+                            _error: 'Signup failed!',
+                        });
+                    }
+                    throw new Error(err);
+                }
+                )
+            return response;
         }
     }
 })();

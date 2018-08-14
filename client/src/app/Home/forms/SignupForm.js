@@ -56,12 +56,12 @@ let SignupForm = props => {
     const { error, handleSubmit, submitting, signupUser, closeSignupModal, openSignupModal2 } = props;
     return (
         <form style={{ textAlign: "center" }} onSubmit={event => handleSubmit(signupUser)(event)
-            .then((errorResponse) => {
-                if (errorResponse) {
-                    return;
+            .then((response) => {
+                if (response.isSuccessful) {
+                    closeSignupModal(false);
+                    openSignupModal2(true);
                 }
-                closeSignupModal(false);
-                openSignupModal2(true);
+                return;
             })}>
             <div className="pt-label-container">
                 <Field name="email" label="Email" component={RenderInput} />
