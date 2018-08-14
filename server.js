@@ -42,7 +42,7 @@ process.on('SIGINT', function () {
   })
 });
 
-require('./api/config/passport')(passport); // pass passport for configuration
+require('./server/api/config/passport')(passport); // pass passport for configuration
 
 // Set up middlewares
 app.use(morgan('short')); // Show logs to users
@@ -92,15 +92,15 @@ app.use(passport.session());
 
 // Include all the routes of modules
 // routes ==================================================
-app.use(require('./api/routes'));
+app.use(require('./server/api/routes'));
 
 //Serve any static files
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.use(express.static(path.resolve(__dirname, './client/build')));
 
 // Fallback to index file if fail
 // Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
   res.end();
 });
 
