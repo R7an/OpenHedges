@@ -9,10 +9,10 @@ module.exports = usersController;
 
 function usersController(){
     return {
-        register: register,
         //login: login,
+        register: register,
         getAll: getAll,
-       // update: update,
+        update: update,
         remove: remove
     }
 
@@ -41,7 +41,8 @@ function usersController(){
             req.login(user, loginErr => {
                 if (loginErr) return next(loginErr)
                 const responseModel = new responses.SuccessResponse()
-                responseModel.alert.message = 'Registration succeeded'
+                responseModel.alert.message = 'Registration succeeded';
+                responseModel.item = user._id;
                 return res.status(200).json(responseModel)
             })
         }
@@ -60,11 +61,28 @@ function usersController(){
             })
     }
 
+    function update(req, res) {
+        let queryCondition = {
+            _id: req.params.id
+        }
+        let amendments = req.body;
+        usersService.update(queryCondition, amendments)
+        .then((user)=>{
+            const responseModel = new responses.SuccessResponse()
+            //const responseModel = new responses.ItemResponse();
+            responseModel.item = user;
+            res.json(responseModel);
+        })
+        .catch((err)=> {
+            res.status(500)
+            .send(new responses.ErrorResponse(err))
+        })
+    }
+
     function remove(req, res) {
         let queryCondition = {
             _id: req.params.id
         }
-
         usersService.removeOne(queryCondition)
             .then((user) => {
                 const responseModel = new responses.ItemResponse()
