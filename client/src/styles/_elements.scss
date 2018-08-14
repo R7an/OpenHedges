@@ -8,7 +8,7 @@
 }
 
 @mixin default-button {
-	font-weight: 500;
+	font-weight: 00;
 	color: $default-white;
 	background: $ohedges-blue;
 	padding: $default-spacing ($default-spacing + 10px);
@@ -29,6 +29,7 @@
 .cta-button {
     font-size: ($header-font-size - 2px);
     font-weight: $header-font-weight;
+    letter-spacing: 0.5px;
 }
 
 .bp3-dialog {

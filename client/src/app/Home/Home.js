@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import SignupModal from './components/SignupModal';
+import { openSignupModal } from '../../redux/actions/UiActions';
 
 class Home extends PureComponent {
 	constructor(props) {
@@ -19,8 +20,8 @@ class Home extends PureComponent {
 					<div className="hero-container">
 						<div className="super-text-container">
 							<div className="logo"></div>
-							<p>Futures</p>
-							<p>Stock</p>
+							<p className="no-border">Futures</p>
+							<p>Stocks</p>
 							<p>Digital Assets</p>
 						</div>
 						<h1>A marketplace for clever trading ideas</h1>
@@ -28,7 +29,7 @@ class Home extends PureComponent {
 							Asset class agnostic – lorem ipsum dolor sit amet,
 							consectetur adipisicing elit.
 						</h4>
-						<button className="btn cta-button">Request Alpha Access</button>
+						<button className="btn cta-button" onClick={()=>openSignupModal(true)}>Request Alpha Access</button>
 					</div>
 					<div className="graphic-container">
 						<div className="hero-graphic" title="No library or expected volume of trades"></div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { connect } from "react-redux";
 
-import { Dialog, Classes, Button } from "@blueprintjs/core";
+import { Dialog, Classes } from "@blueprintjs/core";
 
 import { closeSignupModal } from "../../../redux/actions/UiActions";
 

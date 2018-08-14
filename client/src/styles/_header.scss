@@ -7,7 +7,6 @@ header {
 	.header-inner {
 		@include flexbox();
 		width: 100%;
-		max-width: $max-width;
 		padding: 5px $default-spacing;
 
 		.nav-item { margin-left: auto; }
