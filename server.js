@@ -10,10 +10,12 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const expressValidator = require('express-validator');
+require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
-const host = process.env.HOST || 'localhost';
-const port = process.env.PORT || 8080;
+//const host = process.env.HOST || 'localhost';
+//const port = process.env.PORT || 8080;
 const config = require('./config');
+
 
 
 
@@ -21,7 +23,7 @@ const config = require('./config');
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000','http://localhost:8080'],
+  origin: ['http://localhost:3000','http://localhost:8080', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
   credentials: true,
   //preflightContinue:true,
 }));
@@ -107,10 +109,17 @@ app.get('*', (req, res) => {
 
 
 // Start server
-app.listen(port, host, (err) => {
+// app.listen( host, (err) => {
+//   debugger
+//   if (err) winston.log('error', err);
+
+//   winston.log('info', `>>> 🌎 Open http://${host}:${port} in your browser.`);
+// });
+app.listen( '8080','localhost', (err) => {
   if (err) winston.log('error', err);
 
-  winston.log('info', `>>> 🌎 Open http://${host}:${port} in your browser.`);
+  //winston.log('info', `>>> 🌎 Open http://${host}:${port} in your browser.`);
+  winston.log('info', `>>> 🌎 Open http://localhost:8080 in your browser.`);
 });
 
 module.exports = app;
