@@ -7,12 +7,19 @@ const usersSchema = new Schema({
         type: String,
         // required: true
     },
-    
     lastName: {
         type: String,
         // required: true
     },
-
+    stateOfResidence: {
+        type: String,
+    },
+    country:{
+        type: String,
+    },
+    phoneNumber:{
+        type: String,
+    },
     local: {
         email: {
             type: String,

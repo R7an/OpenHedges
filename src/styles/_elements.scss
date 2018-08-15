@@ -1,0 +1,150 @@
+@mixin default-link {
+	font-family: $default-font;
+	color: $default-black;
+	text-decoration: none;
+	text-transform: none;
+
+	@include transition(all 0.25s linear);
+}
+
+@mixin default-button {
+	font-weight: 00;
+	color: $default-white;
+	background: $ohedges-blue;
+	padding: $default-spacing ($default-spacing + 10px);
+	vertical-align: middle;
+	border: none;
+	border-radius: $default-border-radius;
+	box-shadow: $default-button-shadow;
+
+	@include transition(all 0.25s ease-in-out);
+
+	&:hover {
+		cursor: pointer;
+		background: $ohedges-blue-active;
+		box-shadow: 0;
+	}
+}
+
+.cta-button {
+    font-size: ($header-font-size - 2px);
+    font-weight: $header-font-weight;
+    letter-spacing: 0.5px;
+}
+
+.bp3-dialog {
+	text-align: center;
+	padding-bottom: 0;
+
+	.bp3-dialog-header, .bp3-heading:last-child {
+		font-family: $default-font;
+		font-size: $header-font-size;
+		padding: 7.5px 0;
+		margin: 0;
+	}
+	// Popover / Dialog
+	.bp3-dialog-body {
+		margin: 0;
+
+		.bp3-tabs {
+			@include flexbox();
+			@include flex-direction(column);
+			@include align-items(center);
+			margin-top: $default-spacing;
+
+			.bp3-tab-panel {
+			    background: #FCFEFF;
+			    box-shadow: 0 -1px 0 rgba(16, 22, 26, 0.15);
+			    border-radius: 0 0 $default-border-radius $default-border-radius;
+			}
+
+			.bp3-tab-list {
+				font-family: $default-font;
+				font-size: $header-font-size;
+
+				.bp3-tab-indicator-wrapper { width: 75px; }
+			}
+			.bp3-tab { font-size: ($default-font-size + 2px); }
+		}
+
+		form {
+			position: relative;
+
+			button {
+				position: relative;
+				margin-top: $default-spacing;
+				width: 100%;
+				bottom: 0;
+				left: 0;
+				border-radius: 0 0 6px 6px;
+			}
+
+			.error {
+				position: relative;
+
+				.meta-error {
+					position: absolute;
+					bottom: -20px;
+					left: 0;
+					font-size: ($button-font-size - 2px);
+					color: $error-red;
+				}
+			}
+
+			.pt-label-container {
+				@include flexbox();
+				@include justify-content(center);
+				@include align-items(center);
+				@include flex-wrap(wrap);
+				@include flex-direction(row);
+				padding: 30px 40px 0;
+
+				.label-row { @include flexbox(); }
+
+				.password-entry { padding-top: 20px; }
+
+				label {
+					@include flexbox();
+					flex: 0 0 100%;
+					font-family: $default-font;
+					font-size: $default-font-size;
+					color: $default-black;
+					margin: 0 auto $default-spacing + 10px;
+					width: 100%;
+
+					&:first-child, &:nth-child(2) {
+						width: 40%;
+						flex: 0 0 50%;
+					}
+
+					.popover-label {
+						width: 100%;
+						font-family: $header-font;
+						color: $secondary-black;
+						text-align: left;
+
+						&:first-child { margin-right: $default-spacing; }
+
+						input, .pt-input {
+							width: 100%;
+							outline: none;
+							padding: 6px;
+							margin-top: 5px;
+							background: $input-field-bg;
+							border: 1px solid $input-border-color;
+							border-radius: ($default-border-radius / 2);
+							box-shadow: 0 0 0 1px #e0e2ea;
+						}
+					}
+					
+					textarea {
+						flex: 1 1 54%;
+						min-height: 100px;
+					}
+				}
+
+			}
+		}
+	}
+
+}

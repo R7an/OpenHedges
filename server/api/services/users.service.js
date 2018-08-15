@@ -12,7 +12,7 @@ function usersService (options) {
     return {
         getAll: getAll,
         insert: insert,
-        //update: update,
+        update: update,
         remove: remove,
     };
 
@@ -27,5 +27,8 @@ function usersService (options) {
     }
     function remove (queryCondition) {
         return Users.findOneAndRemove(queryCondition);
+    }
+    function update (queryCondition, amendments) {
+        return Users.findByIdAndUpdate(queryCondition._id, {$set:amendments}, {new:true} );
     }
 }
