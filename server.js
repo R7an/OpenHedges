@@ -23,7 +23,7 @@ const config = require('./config');
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000','http://localhost:8080', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
+  origin: ['http://localhost:3000','http://localhost:8080', 'http://localhost:8022','Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
   credentials: true,
   //preflightContinue:true,
 }));
@@ -97,12 +97,12 @@ app.use(passport.session());
 app.use(require('./server/api/routes'));
 
 //Serve any static files
-app.use(express.static(path.resolve(__dirname, './client/build')));
+app.use(express.static(path.resolve(__dirname, './build')));
 
 // Fallback to index file if fail
 // Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, './build', 'index.html'));
   res.end();
 });
 
