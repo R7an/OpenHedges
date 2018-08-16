@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const usersRoutes = require('./users.routes');
-
+const sitesRoutes = require('./sites.routes')
 // register routes ////////////////////
 router.use('/api/users', usersRoutes)
 
@@ -9,6 +9,8 @@ router.use('/api/users', usersRoutes)
 router.use('/api/*', function(req, res, next) {
     res.sendStatus(404)
 })
+
+router.use(sitesRoutes)
 
 // Handle 500
 router.use(function(err, req, res, next) {

@@ -2,6 +2,7 @@
   "name": "openhedges.co",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@blueprintjs/core": "^3.2.0",
     "email-validator": "^2.0.4",
@@ -48,7 +49,7 @@
     "client-prod": "cd client && npm run build",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start-dev-client\"",
-    "prod": "concurrently --kill-others-on-fail \"npm run server\" \"npm run build\""
+    "prod": "run-s build server"
   },
   "description": "OpenHedges Project - 2018 | Seek Inc.",
   "main": "server.js",
@@ -61,6 +62,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Swelly/OpenHedges/issues"
-  },
-  "homepage": "https://github.com/Swelly/OpenHedges#readme"
+  }
 }

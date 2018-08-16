@@ -14,19 +14,29 @@ require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
 //const host = process.env.HOST || 'localhost';
 //const port = process.env.PORT || 8080;
+const port = 8080;
 const config = require('./config');
-
-
 
 
 // Configurations
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000','http://localhost:8080', 'http://localhost:8022','Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
+  origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8022', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
   credentials: true,
   //preflightContinue:true,
 }));
+
+app.use(require('./server/api/config/static.files'))
+
+// Fallback to index file if fail
+// Handle React routing, return all requests to React app
+
+// // Handle Static File 404
+app.use(function (err, req, res, next) {
+  if (err) console.error
+  res.sendStatus(404)
+});
 
 // Set up Mongoose with centralized promise
 mongoose.Promise = global.Promise;
@@ -92,34 +102,9 @@ app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Include all the routes of modules
 // routes ==================================================
 app.use(require('./server/api/routes'));
 
-//Serve any static files
-app.use(express.static(path.resolve(__dirname, './build')));
-
-// Fallback to index file if fail
-// Handle React routing, return all requests to React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './build', 'index.html'));
-  res.end();
+app.listen(port, () => {
+  console.log(`Magic happens on port: ${port}`);
 });
-
-
-
-// Start server
-// app.listen( host, (err) => {
-//   debugger
-//   if (err) winston.log('error', err);
-
-//   winston.log('info', `>>> 🌎 Open http://${host}:${port} in your browser.`);
-// });
-app.listen( '8080','localhost', (err) => {
-  if (err) winston.log('error', err);
-
-  //winston.log('info', `>>> 🌎 Open http://${host}:${port} in your browser.`);
-  winston.log('info', `>>> 🌎 Open http://localhost:8080 in your browser.`);
-});
-
-module.exports = app;
