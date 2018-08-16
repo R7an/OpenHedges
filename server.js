@@ -1,15 +1,16 @@
-const path = require('path');
-const winston = require('winston');
 const express = require('express');
+const session = require('express-session');
+const expressValidator = require('express-validator');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
 const cors = require('cors');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
+const winston = require('winston');
 const morgan = require('morgan');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const session = require('express-session');
-const expressValidator = require('express-validator');
 require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
 const port = process.env.PORT || 8080;
@@ -23,10 +24,9 @@ app.use(cors({
   //preflightContinue:true,
 }));
 
-app.use(require('./server/api/config/static.files'))
 
-// Fallback to index file if fail
-// Handle React routing, return all requests to React app
+//loading the static files
+app.use(require('./server/api/config/static.files'))
 
 // // Handle Static File 404
 app.use(function (err, req, res, next) {
@@ -37,7 +37,7 @@ app.use(function (err, req, res, next) {
 // Set up Mongoose with centralized promise
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI).then(() => {
-  winston.log('info', 'Successfully connect with mongoose DB');
+  winston.log('info', 'Successfully connected with mongoose DB');
 }).catch((err) => {
   winston.log('error', err);
 });
@@ -53,22 +53,13 @@ process.on('SIGINT', function () {
 require('./server/api/config/passport')(passport); // pass passport for configuration
 
 // Set up middlewares
+
 app.use(morgan('short')); // Show logs to users
 // cookie parser
 app.use(cookieParser());
 // get all data/stuff of the body (POST) parameters
 // parse application/json
-app.use(function (req, res, next) {
-  console.log('this is before parse')
-  console.log(req.body)
-  next()
-})
 app.use(bodyParser.json());
-app.use(function (req, res, next) {
-  console.log('this is after parse')
-  console.log(req.body)
-  next()
-})
 // parse application/vnd.api+json as json
 app.use(bodyParser.json({
   type: 'application/vnd.api+json'
@@ -78,7 +69,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse POST contents
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(expressValidator());
 // passport and mongo-connect config
-if (sessionStore === "mongo") {
+if (sessionStore === process.env.SESSION_STORE || 'mongo') {
   app.use(session({
     secret: process.env.PASSPORT_SESSION_SECRET || 'abc1234', // session secret
     resave: false,
