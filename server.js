@@ -12,11 +12,7 @@ const session = require('express-session');
 const expressValidator = require('express-validator');
 require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
-//const host = process.env.HOST || 'localhost';
-//const port = process.env.PORT || 8080;
-const port = 8080;
-const config = require('./config');
-
+const port = process.env.PORT || 8080;
 
 // Configurations
 // ================================================================================================
@@ -40,7 +36,7 @@ app.use(function (err, req, res, next) {
 
 // Set up Mongoose with centralized promise
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db).then(() => {
+mongoose.connect(process.env.MONGODB_URI).then(() => {
   winston.log('info', 'Successfully connect with mongoose DB');
 }).catch((err) => {
   winston.log('error', err);
