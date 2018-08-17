@@ -13,13 +13,13 @@ const winston = require('winston');
 const morgan = require('morgan');
 require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 80;
 
 // Configurations
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8022', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
+  origin: ['http://localhost:3000', 'http://localhost:80', 'http://localhost:8022', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
   credentials: true,
   //preflightContinue:true,
 }));
