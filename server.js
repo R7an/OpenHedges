@@ -13,7 +13,7 @@ const winston = require('winston');
 const morgan = require('morgan');
 require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 
 // Configurations
 // ================================================================================================
