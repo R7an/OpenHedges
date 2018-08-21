@@ -12,22 +12,34 @@ function usersService(options) {
     User = options.modelService;
 
     return {
-        getAll: getAll,
         insert: insert,
+        getById: getById,
+        getByEmail: getByEmail,
         update: update,
         remove: remove,
     };
 
-    function getAll() {
-        return User.find();
+    function getById(id) {
+        const queryCondition = {
+            where: {
+                'id': id
+            }
+        };
+        return User.findOne(queryCondition);
+    }
+    function getByEmail(email) {
+        const queryCondition = {
+            where: {
+                'email': email
+            }
+        };
+        return User.findOne(queryCondition);
     }
 
     function insert(document) {
         let user = new User(document);
-        user.local.password = user.generateHash(user.local.password);
-        return user.create()
-            // .then(user => res.status(201).send(user))
-            // .catch(error => res.status(400).send(error));
+        user.password = user.generateHash(user.password);
+        return User.create(user.dataValues);
     }
     function remove(queryCondition) {
         return Users.findOneAndRemove(queryCondition);

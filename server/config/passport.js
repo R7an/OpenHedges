@@ -1,5 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
 const User = require('../models').User
+const usersService = require('../services/users.service')({
+    modelService: User
+});
 
 // expose this function to our app using module.exports
 module.exports = passportConfig
@@ -15,13 +18,10 @@ function passportConfig(passport) {
     })
 
     passport.deserializeUser(function (id, done) {
-        User.findAll({
-            where: {
-                'id': id
-            }
-        }).then(function (err, user) {
-            done(err, user);
-        })
+        usersService.getById(id)
+            .then(function (err, user) {
+                done(err, user);
+            })
     })
 
     // =========================================================================
@@ -47,37 +47,30 @@ function passportConfig(passport) {
         process.nextTick(() => {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({
-                where: {
-                    'email': email
-                }
-            }).then(findOneComplete)
-            .catch(error => {
-                // if there are any errors, return the error
-                return done({error:true, reason:error})
+            usersService.getByEmail(email)
+                .then(findOneComplete)
+                .catch(error => {
+                    // if there are any errors, return the error
+                    return done({ error: true, reason: error })
                 })
 
             function findOneComplete(user) {
                 // check to see if theres already a user with that email
                 if (user) {
-                    return done({ error:true,reason: 'A user with this email already exists.' })
+                    debugger
+                    return done({ error: true, reason: 'A user with this email already exists.' })
                 } else {
                     // if there is no user with that email, create the user
-                    let newUser;
                     try {
-                        newUser = new User();
-                        newUser.firstName = req.body.firstName;
-                        newUser.lastName = req.body.lastName;
-                        newUser.username = req.body.username;
-                        newUser.email = email
-                        newUser.password = newUser.generateHash(password)
-                        User.create(newUser.dataValues).then((user) => {
-                            return done({error:false, user:user});
+                        const userData = req.body;
+                        usersService.insert(userData)
+                        .then((user) => {
+                            return done({ error: false, user: user });
                         }).catch((error) => {
-                            return done({error:true, reason:error});
+                            return done({ error: true, reason: error });
                         })
                     } catch (error) {
-                        return done({error:true, reason:error});
+                        return done({ error: true, reason: error });
                     }
                 }
             }
