@@ -21,6 +21,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#DataBase credentials
+/server/config/config.json
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
