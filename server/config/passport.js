@@ -19,7 +19,7 @@ function passportConfig(passport) {
 
     passport.deserializeUser(function (id, done) {
         usersService.getById(id)
-            .then(function (user) {
+            .then((user) =>{
                 if (user) {
                     done(null, user);
                 } else {

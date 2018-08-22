@@ -43,7 +43,7 @@
     "build-css": "node-sass-chokidar src/styles/importer.scss src/styles/importer.css",
     "watch-css": "npm run build-css && node-sass-chokidar src/styles/importer.scss src/styles/importer.css --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm run server",
+    "start": "NODE_ENV=production npm run server",
     "start-dev-client": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",

@@ -1,9 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
-const mongoose = require('mongoose');
 const Sequelize = require('sequelize');
-const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const cors = require('cors');
 const path = require('path');
@@ -20,7 +18,7 @@ const port = process.env.PORT || 8080;
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:8080', 'http://localhost:8022', 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'],
+  origin: ['http://localhost:3000', 'http://localhost:8080','ubuntu@ec2-54-153-37-9.us-west-1.compute.amazonaws.com'],
   credentials: true,
   //preflightContinue:true,
 }));
@@ -54,16 +52,13 @@ app.use(bodyParser.urlencoded({ extended: false })); // Parse POST contents
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(expressValidator());
-// passport and mongo-connect config
-
+// passport config
 app.use(session({
   secret: process.env.PASSPORT_SESSION_SECRET || 'abc1234', // session secret
   resave: false,
   saveUninitialized: true
 }));
-
 // required for passport
-//app.use(session({ secret: process.env.PASSPORT_SESSION_SECRET || 'abc1234' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
