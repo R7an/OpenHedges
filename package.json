@@ -2,7 +2,6 @@
   "name": "openhedges.co",
   "version": "1.0.0",
   "private": true,
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@blueprintjs/core": "^3.2.0",
     "bcryptjs": "^2.4.3",

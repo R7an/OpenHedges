@@ -9,8 +9,7 @@ import {
     updateUserFailure,
 } from '../actions/UserActions';
 
-//const url = 'Openhedges-env.f4wniveamn.us-west-1.elasticbeanstalk.com'
-const url = 'http://localhost:80'
+const url = 'http://localhost:8080'
 
 const UserOperations = (() => {
     return {

@@ -19,8 +19,12 @@ function passportConfig(passport) {
 
     passport.deserializeUser(function (id, done) {
         usersService.getById(id)
-            .then(function (err, user) {
-                done(err, user);
+            .then(function (user) {
+                if (user) {
+                    done(null, user);
+                } else {
+                    done(user.errors, null);
+                }
             })
     })
 
@@ -57,18 +61,17 @@ function passportConfig(passport) {
             function findOneComplete(user) {
                 // check to see if theres already a user with that email
                 if (user) {
-                    debugger
                     return done({ error: true, reason: 'A user with this email already exists.' })
                 } else {
                     // if there is no user with that email, create the user
                     try {
                         const userData = req.body;
                         usersService.insert(userData)
-                        .then((user) => {
-                            return done({ error: false, user: user });
-                        }).catch((error) => {
-                            return done({ error: true, reason: error });
-                        })
+                            .then((user) => {
+                                return done({ error: false, user: user });
+                            }).catch((error) => {
+                                return done({ error: true, reason: error });
+                            })
                     } catch (error) {
                         return done({ error: true, reason: error });
                     }

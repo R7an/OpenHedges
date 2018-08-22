@@ -27,6 +27,7 @@ function usersService(options) {
         };
         return User.findOne(queryCondition);
     }
+
     function getByEmail(email) {
         const queryCondition = {
             where: {
@@ -42,9 +43,16 @@ function usersService(options) {
         return User.create(user.dataValues);
     }
     function remove(queryCondition) {
-        return Users.findOneAndRemove(queryCondition);
+        return User.findOneAndRemove(queryCondition);
     }
-    function update(queryCondition, amendments) {
-        return Users.findByIdAndUpdate(queryCondition._id, { $set: amendments }, { new: true });
+
+    function update(queryParamater, amendments) {
+        id = parseInt(queryParamater.id);
+        const queryCondition = {
+            where: {
+                'id': id
+            }
+        };
+        return User.update(amendments, queryCondition);
     }
 }

@@ -30,12 +30,12 @@ function usersController(){
                 return res.status(409).json(errorResponseModel);
             }
 
-        //     // ***********************************************************************
-        //     // "Note that when using a custom callback, it becomes the application's
-        //     // responsibility to establish a session (by calling req.login()) and send
-        //     // a response."
-        //     // Source: http://passportjs.org/docs
-        //     // ***********************************************************************
+            // ***********************************************************************
+            // "Note that when using a custom callback, it becomes the application's
+            // responsibility to establish a session (by calling req.login()) and send
+            // a response."
+            // Source: http://passportjs.org/docs
+            // ***********************************************************************
             req.login(response.user, loginErr => {
                 if (loginErr) return next(loginErr)
                 const responseModel = new responses.SuccessResponse()
@@ -60,16 +60,15 @@ function usersController(){
     }
 
     function update(req, res) {
-        let queryCondition = {
-            _id: req.params.id
+        const queryCondition = {
+            id: req.params.id
         }
-        let amendments = req.body;
+        const amendments = req.body;
         usersService.update(queryCondition, amendments)
         .then((user)=>{
             const responseModel = new responses.SuccessResponse()
-            //const responseModel = new responses.ItemResponse();
             responseModel.item = user;
-            res.json(responseModel);
+            res.status(200).json(responseModel);
         })
         .catch((err)=> {
             res.status(500)
