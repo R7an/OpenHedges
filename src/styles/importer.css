@@ -4,7 +4,8 @@
 @import url(~@blueprintjs/icons/lib/css/blueprint-icons.css);
 .cta-button {
   font-size: 20px;
-  font-weight: 700; }
+  font-weight: 700;
+  letter-spacing: 0.5px; }
 
 .bp3-dialog {
   text-align: center;
@@ -16,6 +17,32 @@
     margin: 0; }
   .bp3-dialog .bp3-dialog-body {
     margin: 0; }
+    .bp3-dialog .bp3-dialog-body .bp3-tabs {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-align-items: center;
+      -moz-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      margin-top: 15px; }
+      .bp3-dialog .bp3-dialog-body .bp3-tabs .bp3-tab-panel {
+        background: #FCFEFF;
+        box-shadow: 0 -1px 0 rgba(16, 22, 26, 0.15);
+        border-radius: 0 0 8px 8px; }
+      .bp3-dialog .bp3-dialog-body .bp3-tabs .bp3-tab-list {
+        font-family: "Lato", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
+        font-size: 22px; }
+        .bp3-dialog .bp3-dialog-body .bp3-tabs .bp3-tab-list .bp3-tab-indicator-wrapper {
+          width: 75px; }
+      .bp3-dialog .bp3-dialog-body .bp3-tabs .bp3-tab {
+        font-size: 18px; }
     .bp3-dialog .bp3-dialog-body form {
       position: relative; }
       .bp3-dialog .bp3-dialog-body form button {
@@ -137,7 +164,7 @@ a {
     color: #0055DD; }
 
 button {
-  font-weight: 500;
+  font-weight: 00;
   color: #FFFFFF;
   background: #256AF2;
   padding: 15px 25px;
@@ -175,6 +202,8 @@ button {
         .landing-page .landing-inner .hero-container .super-text-container * {
           display: inline-block;
           vertical-align: middle; }
+        .landing-page .landing-inner .hero-container .super-text-container:nth-child(even) {
+          background: red; }
         .landing-page .landing-inner .hero-container .super-text-container .logo {
           position: relative;
           width: 18px;
@@ -198,10 +227,11 @@ button {
           font-family: "Fira Mono", -apple-system, BlinkMacSystemFont, Helvetica, Arial, "Icons16", sans-serif;
           font-size: 12px;
           color: #778484;
+          margin-bottom: 0;
           padding: 0 15px;
-          border-left: 1px solid #E2E2E2; }
-          .landing-page .landing-inner .hero-container .super-text-container p:first-child {
-            border-left: none; }
+          border-left: 3px solid #E2E2E2; }
+        .landing-page .landing-inner .hero-container .super-text-container p.no-border {
+          border: none; }
       .landing-page .landing-inner .hero-container h1 {
         font-size: 44px;
         margin: 0 auto; }
@@ -238,7 +268,6 @@ header {
     display: -webkit-flex;
     display: flex;
     width: 100%;
-    max-width: 78em;
     padding: 5px 15px; }
     header .header-inner .nav-item {
       margin-left: auto; }

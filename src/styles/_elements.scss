@@ -8,7 +8,7 @@
 }
 
 @mixin default-button {
-	font-weight: 500;
+	font-weight: 00;
 	color: $default-white;
 	background: $ohedges-blue;
 	padding: $default-spacing ($default-spacing + 10px);
@@ -29,6 +29,7 @@
 .cta-button {
     font-size: ($header-font-size - 2px);
     font-weight: $header-font-weight;
+    letter-spacing: 0.5px;
 }
 
 .bp3-dialog {
@@ -44,6 +45,27 @@
 	// Popover / Dialog
 	.bp3-dialog-body {
 		margin: 0;
+
+		.bp3-tabs {
+			@include flexbox();
+			@include flex-direction(column);
+			@include align-items(center);
+			margin-top: $default-spacing;
+
+			.bp3-tab-panel {
+			    background: #FCFEFF;
+			    box-shadow: 0 -1px 0 rgba(16, 22, 26, 0.15);
+			    border-radius: 0 0 $default-border-radius $default-border-radius;
+			}
+
+			.bp3-tab-list {
+				font-family: $default-font;
+				font-size: $header-font-size;
+
+				.bp3-tab-indicator-wrapper { width: 75px; }
+			}
+			.bp3-tab { font-size: ($default-font-size + 2px); }
+		}
 
 		form {
 			position: relative;

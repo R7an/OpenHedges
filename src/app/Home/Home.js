@@ -1,16 +1,19 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 
 import SignupModal from './components/SignupModal';
 import SignupModal2 from './components/SignupModal2';
 
-class Home extends PureComponent {
+import { openSignupModal } from '../../redux/actions/UiActions';
+
+class ConnectedHome extends PureComponent {
 	constructor(props) {
 		super(props);
 
 		this.state = {};
 	}
 
-	componentDidMount() { }
+	componentDidMount() {}
 
 	render() {
 		return (
@@ -30,7 +33,11 @@ class Home extends PureComponent {
 							Asset class agnostic – lorem ipsum dolor sit amet,
 							consectetur adipisicing elit.
 						</h4>
-						<button className="btn cta-button">Request Alpha Access</button>
+						<button
+							className="btn cta-button"
+							onClick={()=> this.props.openSignupModal(true)}>
+							Request Alpha Access
+						</button>
 					</div>
 					<div className="graphic-container">
 						<div className="hero-graphic" title="No library or expected volume of trades"></div>
@@ -41,4 +48,12 @@ class Home extends PureComponent {
 	}
 }
 
+const mapDispatchToProps = dispatch => (
+	{
+		openSignupModal: bool => dispatch(openSignupModal(bool)),
+	}
+);
+
+
+const Home = connect(null, mapDispatchToProps)(ConnectedHome);
 export default Home;

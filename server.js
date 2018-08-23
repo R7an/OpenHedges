@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
@@ -10,7 +12,6 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const winston = require('winston');
 const morgan = require('morgan');
-require('dotenv').config();
 const sessionStore = process.env.SESSION_STORE;
 const port = process.env.PORT || 8080;
 
