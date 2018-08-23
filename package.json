@@ -50,7 +50,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject",
     "client-prod": "cd client && npm run build",
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start-dev-client\"",
     "prod": "run-s build server"
   },

@@ -18,7 +18,7 @@ const port = process.env.PORT || 8080;
 // ================================================================================================
 const app = express();
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:8080','ubuntu@ec2-54-153-37-9.us-west-1.compute.amazonaws.com'],
+  origin: ['http://localhost:3000', 'http://localhost:8080','http://openhedge.co'],
   credentials: true,
   //preflightContinue:true,
 }));
