@@ -5,6 +5,6 @@ module.exports = router;
 
 // api routes ==============================================
 router.get('/', usersController.getAll);
-router.post('/', usersController.register);
+//router.post('/', usersController.register);
 router.put('/:id', usersController.update);
 router.delete('/:id', usersController.remove);

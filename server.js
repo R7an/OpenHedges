@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const expressValidator = require('express-validator');
+const flash = require('flash');
 const Sequelize = require('sequelize');
 const passport = require('passport');
 const cors = require('cors');
@@ -24,7 +25,7 @@ app.use(cors({
 }));
 
 //loading the static files
-app.use(require('./server/config/static.files'))
+//app.use(require('./server/static/static.files'))
 
 // // Handle Static File 404
 app.use(function (err, req, res, next) {
@@ -33,11 +34,13 @@ app.use(function (err, req, res, next) {
 });
 
 
-require('./server/config/passport')(passport); // pass passport for configuration
+//require('./server/config/passport')(passport); // pass passport for configuration
 
 // Set up middlewares
 
-app.use(morgan('short')); // Show logs to users
+// if (process.env.NODE_ENV !== 'test') {
+//   app.use(morgan('dev')); // Show logs to users
+// }
 // cookie parser
 app.use(cookieParser());
 
@@ -61,6 +64,7 @@ app.use(session({
 // required for passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // routes ==================================================
 app.use(require('./server/routes'));
@@ -68,3 +72,5 @@ app.use(require('./server/routes'));
 app.listen(port, () => {
   console.log(`Magic happens on port: ${port}`);
 });
+
+module.exports = app;

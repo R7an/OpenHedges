@@ -19,7 +19,7 @@ const UserOperations = (() => {
     function signupUser(userInfo) {
         return async (dispatch) => {
             dispatch(signupUserRequest(true));
-            const signupUrl = new URL(`${url}/api/users/`);
+            const signupUrl = new URL(`${url}/api/auth/register`);
             const response = await fetch(signupUrl.href,
                 {
                     body: JSON.stringify(userInfo),
