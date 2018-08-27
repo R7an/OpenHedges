@@ -9,8 +9,7 @@ import {
     updateUserFailure,
 } from '../actions/UserActions';
 
-let url= (process.env.NODE_ENV === 'production')? 'ubuntu@ec2-54-153-37-9.us-west-1.compute.amazonaws.com': 'http://localhost:8080';
-
+let url= process.env.REACT_APP_ENV_URL;
 const UserOperations = (() => {
     return {
         signupUser: signupUser,

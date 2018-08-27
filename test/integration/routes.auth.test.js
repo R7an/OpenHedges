@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 
 
-const server = require('../../server.js');
+const server = require('../../server/server.js');
 const database = require('../../server/models/index.js').sequelize;
 
 describe('routes : auth', () => {

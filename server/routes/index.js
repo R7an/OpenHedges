@@ -2,6 +2,7 @@ const router = require('express').Router();
 const usersRoutes = require('./users.routes');
 const authRoutes = require('./auth.routes');
 const sitesRoutes = require('./sites.routes')
+
 // register routes ////////////////////
 router.use('/api/auth', authRoutes)
 router.use('/api/users', usersRoutes)

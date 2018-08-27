@@ -14,7 +14,6 @@ function authController(){
     // }
 
     function register(req, res, next) {
-        debugger
         passport.authenticate('local-signup', registerDone)(req, res, next)
          function registerDone(response) {
              // Generate a JSON response reflecting authentication status

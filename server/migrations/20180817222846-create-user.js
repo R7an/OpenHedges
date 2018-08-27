@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       createdAt: {
-        allowNull: false,
+       allowNull: false,
         type: Sequelize.DATE,
       },
       updatedAt: {
